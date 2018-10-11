@@ -1,0 +1,2 @@
+{logobar}
+{/logobar}
