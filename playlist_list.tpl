@@ -21,6 +21,8 @@
 	<th width="21" align="center"></th>
 	<th>{="Title"}</th>
 	<th>{="Type"}</th>
+	<th>{="Scheduled time"}</th>
+	<th>{="Repeat schedule"}</th>
 	<th>{="Status"}</th>
 	<th width="60">&nbsp;</th>
 </tr>
@@ -30,7 +32,9 @@
 {loop $playlist=$playlists onlast=" tdlast"}
 <tr>
 	<td class="row{$_loop.oetxt}{$_loop.lasttxt}" align="center"><img src="../system/images/icons/models/playlist.png" align="absmiddle" /></td>
+	
 	<td class="row{$_loop.oetxt}{$_loop.lasttxt}">{check $playlist.type!="request"}<a href="{$indexself}&action=edit&id={$playlist.id}" style="font-weight: normal">{/check}{$playlist.title|htmlentities}{check $playlist.type!="request"}</a>{/check}</td>
+	
 	<td class="row{$_loop.oetxt}{$_loop.lasttxt}">
 		{if $playlist.type=="general"}{="General Rotation"}
 		{elseif $playlist.type=="scheduled"}{="Scheduled"}
@@ -39,8 +43,29 @@
 		{elseif $playlist.type=="request"}{="Song Requests"}
 		{else}{="Unknown"}{/if}
 	</td>
+	
 	<td class="row{$_loop.oetxt}{$_loop.lasttxt}">
-		{if $playlist.status=="enabled"}{="Enabled"}{else}{="Disabled"}{/if}
+		{if $playlist.type=="interval"}{="All"} {$playlist.interval_length} {$playlist.interval_type}{elseif $playlist.type=="general"}{$playlist.general_starttime} - {$playlist.general_endtime}{else}{$playlist.scheduled_datetime|substr:11}{/if}
+	</td>
+	
+	<td class="row{$_loop.oetxt}{$_loop.lasttxt}">
+		{if $playlist.scheduled_repeat|contains:"daily"}{="Daily"}{/if}
+		{if $playlist.scheduled_repeat|contains:"weekly"}<strong>{="Weekly"}</strong>{/if}
+		{if $playlist.scheduled_repeat|contains:"monthly"}<strong>{="Monthly"}</strong>{/if}
+		{if $playlist.scheduled_repeat|contains:"yearly"}<strong>{="Yearly"}</strong>{/if}
+		{if $playlist.type=="general"}{="General rotation"} ({="Daily"}){elseif $playlist.scheduled_repeat|contains:"never"}{="Never (one time only)"}{elseif $playlist.scheduled_weekdays == ""}:{else}{/if}
+				
+		{if $playlist.scheduled_weekdays|contains:"mon"}({="Mon"}){/if}
+		{if $playlist.scheduled_weekdays|contains:"tue"}({="Tue"}){/if}
+		{if $playlist.scheduled_weekdays|contains:"wed"}({="Wed"}){/if}
+		{if $playlist.scheduled_weekdays|contains:"thu"}({="Thu"}){/if}
+		{if $playlist.scheduled_weekdays|contains:"fri"}({="Fri"}){/if}
+		{if $playlist.scheduled_weekdays|contains:"sat"}({="Sat"}){/if}
+		{if $playlist.scheduled_weekdays|contains:"sun"}({="Sun"}){/if}
+	</td>
+	
+	<td class="row{$_loop.oetxt}{$_loop.lasttxt}">
+		{if $playlist.status=="enabled"}{="Enabled"}{else}<font color="red">{="Disabled"}</font>{/if}
 	</td>
 	
 	<td class="row{$_loop.oetxt}{$_loop.lasttxt}" align="center">
@@ -74,11 +99,11 @@
 		
 		<a href="index.php?page=filemanager"><img border="0" alt="*" src="../system/images/filemanager/filemanager.png" align="absmiddle" /></a> <a href="index.php?page=filemanager">{="Launch file manager"}</a>
 	
-	<td width="2%" style="border-right: 1px solid #E0E0E0">
-	&nbsp;
+	<td width="2%" style="border-right: 1px solid #E0E0E0">&nbsp;
+	
 	</td>
-	<td width="2%">
-	&nbsp;
+	<td width="2%">&nbsp;
+	
 	</td>
 	</td><td width="48%" valign="top">
 

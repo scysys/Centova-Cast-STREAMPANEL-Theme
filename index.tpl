@@ -1,7 +1,7 @@
 {$warnings}
 {$news}
 
-<img src="../system/images/icons/tracks.png" align="absmiddle" /> {="Recent tracks"}:<br />
+<p><img src="../system/images/icons/tracks.png" align="absmiddle" /> {="Recent tracks"}</p>
 
 <div class="tablewrapper" style="padding-bottom: 1px">
     <div id="cc_recenttracks_{$account.username|htmlentities}" class="cc_recenttracks_list"></div>

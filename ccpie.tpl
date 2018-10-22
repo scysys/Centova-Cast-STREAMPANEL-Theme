@@ -1,1 +1,0 @@
-    <div id="pie_{$pieid}" class="piechart"></div>
