@@ -1,4 +1,4 @@
-<style type="text/css">
+{css}
 .m-portlet__head.sp-playlist-table {
     background-color: #1E1E2D;
     border-color: #1E1E2D;
@@ -17,7 +17,7 @@
 .m-subheader {
     display: none;
 }
-</style>
+{/css}
 
 <div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
   <div class="m-portlet__head sp-playlist-table">
@@ -55,7 +55,7 @@
             
               <td colspan="7">{="No items have been created"}.</td>
               {else}
-              {loop $playlist=$playlists onlast=" tdlast"}
+              {loop $playlist=$playlists}
             <tr>
               <td><img src="../system/images/icons/models/playlist.png" align="absmiddle" /></td>
               <td>{check $playlist.type!="request"}<a href="{$indexself}&action=edit&id={$playlist.id}" style="font-weight: normal">{/check}{$playlist.title|htmlentities}{check $playlist.type!="request"}</a>{/check}</td>
@@ -65,24 +65,26 @@
                 {elseif $playlist.type=="now"}{="Immediate"}
                 {elseif $playlist.type=="request"}{="Song Requests"}
                 {else}{="Unknown"}{/if} </td>
-              <td> {if $playlist.type=="interval"}{="All"} {$playlist.interval_length} {$playlist.interval_type}{elseif $playlist.type=="general"}{$playlist.general_starttime} - {$playlist.general_endtime}{else}{$playlist.scheduled_datetime|substr:11}{/if} </td>
-              <td> {if $playlist.scheduled_repeat|contains:"daily"}{="Daily"}{/if}
-                {if $playlist.scheduled_repeat|contains:"weekly"}<strong>{="Weekly"}:</strong>{/if}
-                {if $playlist.scheduled_repeat|contains:"monthly"}<strong>{="Monthly"}:</strong>{/if}
-                {if $playlist.scheduled_repeat|contains:"yearly"}<strong>{="Yearly"}:</strong>{/if}
+              <td> {if $playlist.type=="interval"}-{elseif $playlist.type=="general"}{$playlist.general_starttime} - {$playlist.general_endtime}{else}{$playlist.scheduled_datetime|substr:11}{/if} </td>
+              <td>{if ($playlist.scheduled_repeat|contains:"daily") and ($playlist.type=="scheduled")}<strong>{="Daily Playlist"}</strong><br/>{="Mon"}, {="Tue"}, {="Wed"}, {="Thu"}, {="Fri"}, {="Sat"}, {="Sun"}{/if}
+                {if ($playlist.scheduled_repeat|contains:"weekly") and ($playlist.type=="scheduled")}<strong>{="Weekly"}</strong>{/if}
+                {if ($playlist.scheduled_repeat|contains:"monthly") and ($playlist.type=="scheduled")}<strong>{="Monthly"}</strong>{/if}
+                {if ($playlist.scheduled_repeat|contains:"yearly") and ($playlist.type=="scheduled")}<strong>{="Yearly"}</strong>{/if}
                 
-                {if $playlist.type=="general"}{="General rotation"} ({="Daily"})
-                {elseif $playlist.scheduled_repeat|contains:"never"}{="Never (one time only)"}
-                {elseif $playlist.scheduled_weekdays|contains:"mon"}({="Mon"})
-                {elseif $playlist.scheduled_weekdays|contains:"tue"}({="Tue"})
-                {elseif $playlist.scheduled_weekdays|contains:"wed"}({="Wed"})
-                {elseif $playlist.scheduled_weekdays|contains:"thu"}({="Thu"})
-                {elseif $playlist.scheduled_weekdays|contains:"fri"}({="Fri"})
-                {elseif $playlist.scheduled_weekdays|contains:"sat"}({="Sat"})
-                {elseif $playlist.scheduled_weekdays|contains:"sun"}({="Sun"})
+                {if $playlist.type=="general"}<strong>{="General rotation"}</strong><br/>{="Mon"}, {="Tue"}, {="Wed"}, {="Thu"}, {="Fri"}, {="Sat"}, {="Sun"}
+                {elseif ($playlist.type=="scheduled") and ($playlist.scheduled_repeat|contains:"never")}<strong>{="Never (one time only)"} {="on"} {$playlist.scheduled_datetime|substr:0:10}</strong>
+                {elseif ($playlist.type=="interval") and ($playlist.interval_style=="onerandom")}<strong>{="All"} {$playlist.interval_length} {$playlist.interval_type}</strong><br/>{="Play only one randomly selected track from this playlist"}
+                {elseif ($playlist.type=="interval") and ($playlist.interval_style=="playall")}<strong>{="All"} {$playlist.interval_length} {$playlist.interval_type}</strong><br/>{="Play all tracks from this playlist in order"}
+                {elseif $playlist.scheduled_weekdays|contains:"mon"}<br/>{="Mon"}
+                {elseif $playlist.scheduled_weekdays|contains:"tue"}<br/>{="Tue"}
+                {elseif $playlist.scheduled_weekdays|contains:"wed"}<br/>{="Wed"}
+                {elseif $playlist.scheduled_weekdays|contains:"thu"}<br/>{="Thu"}
+                {elseif $playlist.scheduled_weekdays|contains:"fri"}<br/>{="Fri"}
+                {elseif $playlist.scheduled_weekdays|contains:"sat"}<br/>{="Sat"}
+                {elseif $playlist.scheduled_weekdays|contains:"sun"}<br/>{="Sun"}
                 {/if} </td>
               <td>{if $playlist.status=="enabled"}{="Enabled"}{else}<font color="red">{="Disabled"}</font>{/if}</td>
-              <td> {check $playlist.type!="request"} <a href="{$indexself}&action=delete&id={$playlist.id}" onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')"><img title="{="Delete playlist"}" src="../system/images/icons/delete.png" border="0" align="absmiddle" /></a> {/check} <a href="{$indexself}&action=status&id={$playlist.id}&status={if $playlist.status=="enabled"}0{else}1{/if}"><img title="{if $playlist.status=="enabled"}{="Disable playlist"}{else}{="Enable playlist"}{/if}" src="../system/images/icons/{if $playlist.status=="enabled"}disable{else}enable{/if}.png" border="0" align="absmiddle" /></a> {check $playlist.type!="request"} <a href="{$indexself}&action=edit&id={$playlist.id}"><img title="{="Edit playlist"}" src="../system/images/icons/edit.png" border="0" align="absmiddle" /></a> {/check} </td>
+              <td>{check $playlist.type!="request"} <a href="{$indexself}&action=delete&id={$playlist.id}" onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')"><img title="{="Delete playlist"}" src="../system/images/icons/delete.png" border="0" align="absmiddle" /></a> {/check} <a href="{$indexself}&action=status&id={$playlist.id}&status={if $playlist.status=="enabled"}0{else}1{/if}"><img title="{if $playlist.status=="enabled"}{="Disable playlist"}{else}{="Enable playlist"}{/if}" src="../system/images/icons/{if $playlist.status=="enabled"}disable{else}enable{/if}.png" border="0" align="absmiddle" /></a> {check $playlist.type!="request"} <a href="{$indexself}&action=edit&id={$playlist.id}"><img title="{="Edit playlist"}" src="../system/images/icons/edit.png" border="0" align="absmiddle" /></a> {/check}</td>
             </tr>
             {/loop}
             {/if}
