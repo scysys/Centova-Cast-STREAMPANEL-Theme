@@ -83,7 +83,7 @@
                 {elseif $playlist.scheduled_weekdays|contains:"sat"}<br/>{="Sat"}
                 {elseif $playlist.scheduled_weekdays|contains:"sun"}<br/>{="Sun"}
                 {/if} </td>
-              <td>{if $playlist.status=="enabled"}{="Enabled"}{else}<font color="red">{="Disabled"}</font>{/if}</td>
+              <td>{if $playlist.status=="enabled"}{="Enabled"}(1){else}<font color="red">{="Disabled"}(2)</font>{/if}</td>
               <td>{check $playlist.type!="request"} <a href="{$indexself}&action=delete&id={$playlist.id}" onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')"><img title="{="Delete playlist"}" src="../system/images/icons/delete.png" border="0" align="absmiddle" /></a> {/check} <a href="{$indexself}&action=status&id={$playlist.id}&status={if $playlist.status=="enabled"}0{else}1{/if}"><img title="{if $playlist.status=="enabled"}{="Disable playlist"}{else}{="Enable playlist"}{/if}" src="../system/images/icons/{if $playlist.status=="enabled"}disable{else}enable{/if}.png" border="0" align="absmiddle" /></a> {check $playlist.type!="request"} <a href="{$indexself}&action=edit&id={$playlist.id}"><img title="{="Edit playlist"}" src="../system/images/icons/edit.png" border="0" align="absmiddle" /></a> {/check}</td>
             </tr>
             {/loop}
