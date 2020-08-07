@@ -35,8 +35,6 @@
   <div class="m-portlet__body"> 
     <!--begin: Datatable -->
     <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-      <div class="row">
-        <div class="col-sm-12">
           <table id="SPPlaylistTable" class="table table-striped table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
             <thead>
               <tr class="sp-playlist-table-tr">
@@ -91,8 +89,6 @@
               </tbody>
             
           </table>
-        </div>
-      </div>
     </div>
   </div>
 </div>
