@@ -74,7 +74,7 @@
 
 		<div id="options" class="statuscontents">
 			<input type="button" onclick="window.location = 'index.php'" value="{="Return"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" id="btn_media" onclick="window.location.href='index.php'" value="{="Media"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" id="btn_media" onclick="window.location.href='index.php?page=library'" value="{="Media"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
 
 			<input type="button" id="btn_copy" onclick="window.fm.populate_clipboard(true)" value="{="Copy"}" />
 			<input type="button" id="btn_cut" onclick="window.fm.populate_clipboard(false)" value="{="Cut"}" />
