@@ -41,6 +41,7 @@ display: none;
                     <th>{="Real name"}</th>
                     <th>{="Username"}</th>
                     <th>{="Status"}</th>
+                    <th>{="Broadcaster Connection"}</th>
                     <th width="80">&nbsp;</th>
                 </tr>
             </thead>
@@ -54,21 +55,28 @@ display: none;
                             style="font-weight: normal">{$djaccount.realname|htmlentities}</a></td>
 
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}">{$djaccount.username|htmlentities}</td>
-
+                    
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}">
                         {if $djaccount.status=="enabled"}{="Enabled"}{else}{="Disabled"}{/if}
                     </td>
-
+                    
+                    {if $account.servertype=="ShoutCast2"}
+                    <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><strong>{="Protocol"}:</strong> SHOUTcast V1<br/><div id="sp_ipaddress"></div><strong>{="Port"}:</strong> {$account.port|add:2|htmlentities}<br/><strong>{="Bitrate"}:</strong> {$account.maxbitrate|htmlentities} {="kbps"}<br/><strong>{="Password"}:</strong> {$djaccount.username|htmlentities}:{="DJPassword"}</td>
+                    {/if}
+                    {if $account.servertype=="IceCast"}
+                    <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><strong>{="Protocol"}:</strong> SHOUTcast V1<br/><div id="sp_ipaddress"></div><strong>{="Port"}:</strong> {$account.port|add:1|htmlentities}<br/><strong>{="Bitrate"}:</strong> {$account.maxbitrate|htmlentities} {="kbps"}<br/><strong>{="Password"}:</strong> {$djaccount.username|htmlentities}:{="DJ-PASSWORD"}</td>
+                    {/if}
+                    
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}" align="center">
                         <a href="{$indexself}&action=delete&id={$djaccount.id}"
                             onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')"><img
                                 title="{="Delete Account"}" src="../system/images/icons/delete.png" border="0"
-                                align="absmiddle" /></a>
+                                align="absmiddle" /></a><br/>
                         <a
                             href="{$indexself}&action=status&id={$djaccount.id}&status={if $djaccount.status=="enabled"}0{else}1{/if}"><img
                                 title="{if $djaccount.status=="enabled"}{="Disable DJ account"}{else}{="Enable DJ account"}{/if}"
                                 src="../system/images/icons/{if $djaccount.status=="enabled"}disable{else}enable{/if}.png"
-                                border="0" align="absmiddle" /></a>
+                                border="0" align="absmiddle" /></a><br/>
                         <a href="{$indexself}&action=edit&id={$djaccount.id}"><img title="{="Edit Account"}"
                                 src="../system/images/icons/edit.png" border="0" align="absmiddle" /></a>
                     </td>
@@ -88,7 +96,11 @@ display: none;
         </div>
     </div>
     <div class="m-portlet__body">
-        {="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}
+        <ul>
+            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}</li>
+            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}</li>
+            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}</li>
+        </ul>
     </div>
 </div>
 
@@ -130,3 +142,5 @@ display: none;
         },
     });
 </script>
+
+<script>document.getElementById("sp_ipaddress").innerHTML = "<strong>{="Hostname"}:</strong> " + document.location.hostname;</script>
