@@ -27,6 +27,6 @@ display: none;
 	{/check}
 	<br /><br />
 	
-	<a href="index.php?page=djaccounts">{="Return"}</a>
+	<a href="index.php?page=djaccounts&plimit=200">{="Return"}</a>
     </div>
 </div>
