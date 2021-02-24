@@ -147,9 +147,9 @@ set_autodj_mounts_content: '{="You currently have no autoDJ-based mount points c
 <span class="input-group-text">{="Crossfade length"}</span>
 </div>
 <input class="form-control" type="text" name="config[crossfade]" maxlength="5" value="{$config.crossfade|htmlentities}" /> {$errors.crossfade|checkerror}
-</div>
 <div class="input-group-append">
 <span class="input-group-text">{="second(s)"} ({="0 to disable"})</span>
+</div>
 </div>
 {/check}
 
