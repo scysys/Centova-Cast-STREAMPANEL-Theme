@@ -20,6 +20,23 @@ display: none;
     <div class="m-portlet__head sp-box-table">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text sp-box-table"> {="Good to know"} </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <ul>
+            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}</li>
+            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}</li>
+            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
+    <div class="m-portlet__head sp-box-table">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
                 <h3 class="m-portlet__head-text sp-box-table"> {="Create DJ account"} </h3>
             </div>
         </div>
@@ -36,8 +53,6 @@ display: none;
         <table id="SPDJTable"
             class="table table-striped table-bordered table-checkable dataTable no-footer dtr-inline">
             <thead>
-                <tr class="sp-dj-table-tr">
-                    <th width="21" align="center"></th>
                     <th>{="Real name"}</th>
                     <th>{="Username"}</th>
                     <th>{="Status"}</th>
@@ -48,8 +63,6 @@ display: none;
             <tbody>
                 {loop $djaccount=$djaccounts onlast=" tdlast"}
                 <tr>
-                    <td class="row{$_loop.oetxt}{$_loop.lasttxt}" align="center"><img
-                            src="../system/images/icons/models/djaccount.png" align="absmiddle" /></td>
 
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><a href="{$indexself}&action=edit&id={$djaccount.id}"
                             style="font-weight: normal">{$djaccount.realname|htmlentities}</a></td>
@@ -68,39 +81,14 @@ display: none;
                     {/if}
                     
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}" align="center">
-                        <a href="{$indexself}&action=delete&id={$djaccount.id}"
-                            onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')"><img
-                                title="{="Delete Account"}" src="../system/images/icons/delete.png" border="0"
-                                align="absmiddle" /></a><br/>
-                        <a
-                            href="{$indexself}&action=status&id={$djaccount.id}&status={if $djaccount.status=="enabled"}0{else}1{/if}"><img
-                                title="{if $djaccount.status=="enabled"}{="Disable DJ account"}{else}{="Enable DJ account"}{/if}"
-                                src="../system/images/icons/{if $djaccount.status=="enabled"}disable{else}enable{/if}.png"
-                                border="0" align="absmiddle" /></a><br/>
-                        <a href="{$indexself}&action=edit&id={$djaccount.id}"><img title="{="Edit Account"}"
-                                src="../system/images/icons/edit.png" border="0" align="absmiddle" /></a>
+                        <a href="{$indexself}&action=edit&id={$djaccount.id}" class="btn btn-primary btn-block btn-sm">{="Edit Account"}"</a>
+                        <a href="{$indexself}&action=status&id={$djaccount.id}&status={if $djaccount.status=="enabled"}0{else}1{/if}" class="btn btn-{if $djaccount.status=="enabled"}warning{else}success{/if} btn-block btn-sm">{if $djaccount.status=="enabled"}{="Disable DJ account"}{else}{="Enable DJ account"}{/if}</a>
+                        <a href="{$indexself}&action=delete&id={$djaccount.id}" class="btn btn-danger btn-block btn-sm" onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')">{="Delete Account"}</a>
                     </td>
                 </tr>
                 {/loop}
             </tbody>
         </table>
-    </div>
-</div>
-
-<div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
-    <div class="m-portlet__head sp-box-table">
-        <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text sp-box-table"> {="Good to know"} </h3>
-            </div>
-        </div>
-    </div>
-    <div class="m-portlet__body">
-        <ul>
-            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}</li>
-            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}</li>
-            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}</li>
-        </ul>
     </div>
 </div>
 
