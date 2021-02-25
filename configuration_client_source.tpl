@@ -29,7 +29,7 @@ set_autodj_mounts_content: '{="You currently have no autoDJ-based mount points c
 {="Disabled"}
 
 {otherwise}
-<select class="form-control" name="config[usesource]" id="config_usesource" id="help-spautodjstatus-text" aria-describedby="help-spautodjstatus">
+<select class="form-control" name="config[usesource]" id="config_usesource help-spautodjstatus-text" aria-describedby="help-spautodjstatus">
 {if $actual_privileged>0}<option value="2"{/if}{if ($config.usesource==2) && ($actual_privileged>0)} selected="selected"{/if}{if $actual_privileged>0}>{="Prohibited (stream MUST use an offsite source)"}</option>{/if}
 <option value="1"{if $config.usesource==1} selected="selected"{/if}>{if $actual_privileged>0}{="Permitted and enabled"}{else}{="Enabled"}{/if}</option>
 <option value="0"{if $config.usesource==0} selected="selected"{/if}>{if $actual_privileged>0}{="Permitted, but disabled"}{else}{="Disabled"}{/if}</option>

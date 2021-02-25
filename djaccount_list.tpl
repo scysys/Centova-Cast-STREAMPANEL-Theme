@@ -26,9 +26,12 @@ display: none;
     </div>
     <div class="m-portlet__body">
         <ul>
-            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}</li>
-            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}</li>
-            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}</li>
+            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}
+            </li>
+            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}
+            </li>
+            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}
+            </li>
         </ul>
     </div>
 </div>
@@ -50,9 +53,9 @@ display: none;
         </div>
     </div>
     <div class="m-portlet__body">
-        <table id="SPDJTable"
-            class="table table-striped table-bordered table-checkable dataTable no-footer dtr-inline">
+        <table id="SPDJTable" class="table table-striped table-bordered table-checkable dataTable no-footer dtr-inline">
             <thead>
+                <tr>
                     <th>{="Real name"}</th>
                     <th>{="Username"}</th>
                     <th>{="Status"}</th>
@@ -68,22 +71,37 @@ display: none;
                             style="font-weight: normal">{$djaccount.realname|htmlentities}</a></td>
 
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}">{$djaccount.username|htmlentities}</td>
-                    
+
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}">
                         {if $djaccount.status=="enabled"}{="Enabled"}{else}{="Disabled"}{/if}
                     </td>
-                    
+
                     {if $account.servertype=="ShoutCast2"}
-                    <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><strong>{="Protocol"}:</strong> SHOUTcast V1<br/><div id="sp_ipaddress"></div><strong>{="Port"}:</strong> {$account.port|add:2|htmlentities}<br/><strong>{="Bitrate"}:</strong> {$account.maxbitrate|htmlentities} {="kbps"}<br/><strong>{="Password"}:</strong> {$djaccount.username|htmlentities}:{="DJPassword"}</td>
+                        <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><strong>{="Protocol"}:</strong> SHOUTcast V1<br />
+                            <div id="sp_ipaddress"></div><strong>{="Port"}:</strong>
+                            {$account.port|add:2|htmlentities}<br /><strong>{="Bitrate"}:</strong>
+                            {$account.maxbitrate|htmlentities} {="kbps"}<br /><strong>{="Username"}:</strong>
+                            {="Leave empty"}<br /><strong>{="Password"}:</strong>
+                            {$djaccount.username|htmlentities}:{="DJPassword"}
+                        </td>
                     {/if}
                     {if $account.servertype=="IceCast"}
-                    <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><strong>{="Protocol"}:</strong> SHOUTcast V1<br/><div id="sp_ipaddress"></div><strong>{="Port"}:</strong> {$account.port|add:1|htmlentities}<br/><strong>{="Bitrate"}:</strong> {$account.maxbitrate|htmlentities} {="kbps"}<br/><strong>{="Password"}:</strong> {$djaccount.username|htmlentities}:{="DJ-PASSWORD"}</td>
+                        <td class="row{$_loop.oetxt}{$_loop.lasttxt}"><strong>{="Protocol"}:</strong> SHOUTcast V1<br />
+                            <div id="sp_ipaddress"></div><strong>{="Port"}:</strong>
+                            {$account.port|add:1|htmlentities}<br /><strong>{="Bitrate"}:</strong>
+                            {$account.maxbitrate|htmlentities} {="kbps"}<br /><strong>{="Username"}:</strong>
+                            {="Leave empty"}<br /><strong>{="Password"}:</strong>
+                            {$djaccount.username|htmlentities}:{="DJPASSWORD"}
+                        </td>
                     {/if}
-                    
+
                     <td class="row{$_loop.oetxt}{$_loop.lasttxt}" align="center">
-                        <a href="{$indexself}&action=edit&id={$djaccount.id}" class="btn btn-primary btn-block btn-sm">{="Edit Account"}"</a>
-                        <a href="{$indexself}&action=status&id={$djaccount.id}&status={if $djaccount.status=="enabled"}0{else}1{/if}" class="btn btn-{if $djaccount.status=="enabled"}warning{else}success{/if} btn-block btn-sm">{if $djaccount.status=="enabled"}{="Disable DJ account"}{else}{="Enable DJ account"}{/if}</a>
-                        <a href="{$indexself}&action=delete&id={$djaccount.id}" class="btn btn-danger btn-block btn-sm" onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')">{="Delete Account"}</a>
+                        <a href="{$indexself}&action=edit&id={$djaccount.id}"
+                            class="btn btn-primary btn-block btn-sm">{="Edit Account"}"</a>
+                        <a href="{$indexself}&action=status&id={$djaccount.id}&status={if $djaccount.status=="enabled"}0{else}1{/if}"
+                            class="btn btn-{if $djaccount.status=="enabled"}warning{else}success{/if} btn-block btn-sm">{if $djaccount.status=="enabled"}{="Disable DJ account"}{else}{="Enable DJ account"}{/if}</a>
+                        <a href="{$indexself}&action=delete&id={$djaccount.id}" class="btn btn-danger btn-block btn-sm"
+                            onclick="return confirm('{="Are you sure you want to permanently delete this item?"}')">{="Delete Account"}</a>
                     </td>
                 </tr>
                 {/loop}
@@ -108,27 +126,29 @@ display: none;
         iDisplayLength: 5,
         buttons: ["print", "copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
         language: {
-                       		search: '{=""}',
-                       		searchPlaceholder: '{="Search for..."}',
-                       		emptyTable: '{="No data available in table"}',
-                       		info: '{="Showing"} _START_ {="to"} _END_ {="of"} _TOTAL_ {="Entries"}',
-                       		infoEmpty: '{="Showing 0 to 0 of 0 entries"}',
-                       		lengthMenu: '{=""} _MENU_ {=""}',
-                       		loadingRecords: '{="Loading..."}',
-                       		processing: '{="Processing..."}',
-                       		zeroRecords: '{="No entries have been found"}',
+            search: '{=""}',
+            searchPlaceholder: '{="Search for..."}',
+            emptyTable: '{="No data available in table"}',
+            info: '{="Showing"} _START_ {="to"} _END_ {="of"} _TOTAL_ {="Entries"}',
+            infoEmpty: '{="Showing 0 to 0 of 0 entries"}',
+            lengthMenu: '{=""} _MENU_ {=""}',
+            loadingRecords: '{="Loading..."}',
+            processing: '{="Processing..."}',
+            zeroRecords: '{="No entries have been found"}',
             paginate: {
-                               			"first": '{="First"}',
-                               			"last": '{="Last"}',
-                               			"next": '{="Next"}',
-                               			"previous": '{="Previous"}'
+                "first": '{="First"}',
+                "last": '{="Last"}',
+                "next": '{="Next"}',
+                "previous": '{="Previous"}'
             },
             buttons: {
-                               			print: '{="Print"}',
-                               			copy: '{="Copy"}',
+                print: '{="Print"}',
+                copy: '{="Copy"}',
             },
         },
     });
 </script>
 
-<script>document.getElementById("sp_ipaddress").innerHTML = "<strong>{="Hostname"}:</strong> " + document.location.hostname;</script>
+<script>
+    document.getElementById("sp_ipaddress").innerHTML = "<strong>{="Hostname"}:</strong> " + document.location.hostname;
+</script>

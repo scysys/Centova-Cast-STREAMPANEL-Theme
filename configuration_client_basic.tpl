@@ -95,8 +95,6 @@ $(function(){
 </script>
 {/if}
 
-
-
 <div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
 <div class="m-portlet__head sp-box-table">
 <div class="m-portlet__head-caption">

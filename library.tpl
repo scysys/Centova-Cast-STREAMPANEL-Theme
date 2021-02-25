@@ -80,29 +80,36 @@
 	candy_corn: {if $_CONSTANTS.DEV_MODE}1{else}0{/if}
 {/options}
 
-<form method="post" onsubmit="window.cclibrary.search(); return false">
+<span id="sp-artist-section" style="display:none">{="This section shows all Artists from your uploaded music files. You can drag and drop Artist with your mouse to your left playlists."}</span>
+<span id="sp-album-section" style="display:none">{="This section shows the Album of the selected Artist. You can drag and drop an Album with your mouse to your left playlists."}</span>
+<span id="sp-title-section" style="display:none">{="This section show the Title of the selected Artist and his Album. You can drag and drop Titles with your mouse to your left playlists."}</span>
+<span id="sp-playlistlayout" style="display:none">{="This sections contains all the Tracks that you have assigned to this selected playlist."}</span>
+<span id="sp-mediaplaylists" style="display:none">{="This section contains your media library and the playlists you have actually created."}</span>
+<span id="sp-folderlayout" style="display:none">{="The folder layout is an simplier interface where you can drag and drop multiple folders instead of single files only to you created playlists. Thats only possible when you organize your files in folders on file upload."}</span>
+
+<form method="post" onsubmit="window.cclibrary.search(); return false" role="form">
 
 	<div id="librarylayout">
 		
-		<div id="playlists" class="lbt"></div>
+		<div id="playlists" class="lbt" aria-describedby="sp-mediaplaylists"></div>
 
 		<div id="contentlayout">
 			<div id="medialayout">
 
 				<div id="artistalbumlayout">
-					<div id="artists" class="lbt"></div>
-					<div id="albums" class="lbt"></div>
+					<div id="artists" class="lbt" aria-describedby="sp-artist-section"></div>
+					<div id="albums" class="lbt" aria-describedby="sp-album-section"></div>
 				</div>
-				<div id="tracks" class="lbt"></div>
+				<div id="tracks" class="lbt" aria-describedby="sp-title-section"></div>
 
 			</div>
 
 			<div id="playlistlayout" class="pane togglepane">
-				<div id="playlist" class="lbt"></div>
+				<div id="playlist" class="lbt" aria-describedby="sp-playlistlayout"></div>
 			</div>
 
 			<div id="folderlayout" class="pane togglepane">
-				<div id="folders" class="tvt"></div>
+				<div id="folders" class="tvt" aria-describedby="sp-folderlayout"></div>
 			</div>
 		</div>
 
@@ -111,7 +118,7 @@
 
 			<div id="search">
 				<div style="float: right; text-align: right">
-					<input type="button" value="{="Options"}" id="pulldownmenu" onclick="window.cclibrary.show_menu(this)" />
+					<input aria-expanded="false" type="button" value="{="Options"}" id="pulldownmenu" onclick="window.cclibrary.show_menu(this)" />
 				</div>
 
 				<div id="searchform">
@@ -138,12 +145,12 @@
 
 			<div id="mediastatus" class="statuscontents">
 				<div style="float: right">
-					<input disabled="disabled" type="button" id="btn_preview" name="preview" value="{="Preview track(s)"}" onmouseup="return window.cclibrary.tracks.preview()" />
+					<input class="btn btn-default btn-sm" disabled="disabled" type="button" id="btn_preview" name="preview" value="{="Preview track(s)"}" onmouseup="return window.cclibrary.tracks.preview()" />
 				</div>
 				<div>
-					<input type="button" value="{="Return"}" onclick="window.location='index.php'" /> &nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="{="Manage playlists"}" onclick="window.location='index.php?page=playlists'" /> &nbsp;&nbsp;&nbsp;&nbsp;
-					{if $allow_file_manager>0}<input type="button" id="btn_filemanager" value="{="File Manager"}" onclick="window.location.href='index.php?page=filemanager'" />{/if}
+					<input class="btn btn-default btn-sm" type="button" value="{="Return"}" onclick="window.location='index.php'" /> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input class="btn btn-default btn-sm" type="button" value="{="Manage playlists"}" onclick="window.location='index.php?page=playlists'" /> &nbsp;&nbsp;&nbsp;&nbsp;
+					{if $allow_file_manager>0}<input class="btn btn-default btn-sm" type="button" id="btn_filemanager" value="{="File Manager"}" onclick="window.location.href='index.php?page=filemanager'" />{/if}
 				</div>
 			</div>
 
@@ -151,36 +158,34 @@
 				<div style="float: right">
 				</div>
 				<div>
-					<input type="button" value="{="Return"}" onclick="window.location='index.php'" /> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input class="btn btn-default btn-sm" type="button" value="{="Return"}" onclick="window.location='index.php'" /> &nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 			</div>
 
 			<div id="playliststatus" class="statuscontents" style="display: none">
 				<div style="float: right">
 					{="%s in %s track(s)","<span id='tracktime'>00:00:00</span>","<span id='trackcount'>0</span>"}
-					<input type="button" id="btn_save" name="save" value="{="Save"}" />
-					<input type="button" id="btn_revert" name="revert" value="{="Revert"}" />
+					<input class="btn btn-default btn-sm" type="button" id="btn_save" name="save" value="{="Save"}" />
+					<input class="btn btn-default btn-sm" type="button" id="btn_revert" name="revert" value="{="Revert"}" />
 				</div>
-				<input type="button" value="{="Return"}" onclick="window.location='index.php'" /> &nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-default btn-sm" type="button" value="{="Return"}" onclick="window.location='index.php'" /> &nbsp;&nbsp;&nbsp;&nbsp;
 
-				<input disabled="disabled" type="button" id="btn_top" name="movetop" value="{="Top"}" />
-				<input disabled="disabled" type="button" id="btn_up" name="moveup" value="{="Up"}" />
-				<input disabled="disabled" type="button" id="btn_down" name="movedown" value="{="Down"}" />
-				<input disabled="disabled" type="button" id="btn_bottom" name="movebottom" value="{="Bottom"}" />
+				<input class="btn btn-default btn-sm" disabled="disabled" type="button" id="btn_top" name="movetop" value="{="Top"}" />
+				<input class="btn btn-default btn-sm" disabled="disabled" type="button" id="btn_up" name="moveup" value="{="Up"}" />
+				<input class="btn btn-default btn-sm" disabled="disabled" type="button" id="btn_down" name="movedown" value="{="Down"}" />
+				<input class="btn btn-default btn-sm" disabled="disabled" type="button" id="btn_bottom" name="movebottom" value="{="Bottom"}" />
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input disabled="disabled" type="button" id="btn_remove" name="remove" value="{="Remove"}" />
+				<input class="btn btn-default btn-sm" disabled="disabled" type="button" id="btn_remove" name="remove" value="{="Remove"}" />
 				&nbsp;&nbsp;
 			</div>
 
-
 		</div>
 
-
 	</div>
-
 
 	<div id="panelshaded" class="trackscover panelnotloading">
 	</div>
+	
 	<div id="panelloading" class="trackscover panelnotloading">
 		<div id="panelloadingmsg">
 			<span id="panelloading_load">{="Loading"} ...</span>

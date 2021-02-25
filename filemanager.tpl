@@ -53,13 +53,16 @@
 	dj_private_ftp: {if $djprivateftp}1{else}0{/if}
 {/options}
 
-<form method="post" action="index.php?page=filemanager" enctype="multipart/form-data">
+<span id="sp-folderbrowser" style="display:none">{="This sections shows the folder that are allocated to your account. Your Media files must always be uploaded in the media folder. Ignore the other folders!"}</span>
+<span id="sp-filebrowser" style="display:none">{="This section shows your uploaded media files. For easier management organize your uploads in folders."}</span>
+
+<form method="post" action="index.php?page=filemanager" enctype="multipart/form-data" role="form">
 
 <div id="filemanagerlayout">
-	<div id="folderbrowser" class="tvt">
+	<div id="folderbrowser" class="tvt" aria-describedby="sp-folderbrowser">
 	</div>
 
-	<div id="filebrowser" style="z-index: 2" class="lbt">
+	<div id="filebrowser" style="z-index: 2" class="lbt" aria-describedby="sp-filebrowser">
 	</div>
 
 	<div id="statuspane" class="pane">
@@ -73,17 +76,17 @@
 		</div>
 
 		<div id="options" class="statuscontents">
-			<input type="button" onclick="window.location = 'index.php'" value="{="Return"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" id="btn_media" onclick="window.location.href='index.php?page=library'" value="{="Media"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-default btn-sm" type="button" onclick="window.location = 'index.php'" value="{="Return"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-default btn-sm" type="button" id="btn_media" onclick="window.location.href='index.php?page=library'" value="{="Media"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
 
-			<input type="button" id="btn_copy" onclick="window.fm.populate_clipboard(true)" value="{="Copy"}" />
-			<input type="button" id="btn_cut" onclick="window.fm.populate_clipboard(false)" value="{="Cut"}" />
-			<input type="button" id="btn_paste" onclick="window.fm.paste_clipboard()" value="{="Paste"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" id="btn_delete" onclick="window.fm.delete_selected()" value="{="Delete"}" />
-			<input type="button" id="btn_rename" onclick="window.fm.rename_selected()" value="{="Rename"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" id="btn_newfolder" onclick="window.fm.create_directory()" value="{="New Folder"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-default btn-sm" type="button" id="btn_copy" onclick="window.fm.populate_clipboard(true)" value="{="Copy"}" />
+			<input class="btn btn-default btn-sm" type="button" id="btn_cut" onclick="window.fm.populate_clipboard(false)" value="{="Cut"}" />
+			<input class="btn btn-default btn-sm" type="button" id="btn_paste" onclick="window.fm.paste_clipboard()" value="{="Paste"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-default btn-sm" type="button" id="btn_delete" onclick="window.fm.delete_selected()" value="{="Delete"}" />
+			<input class="btn btn-default btn-sm" type="button" id="btn_rename" onclick="window.fm.rename_selected()" value="{="Rename"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-default btn-sm" type="button" id="btn_newfolder" onclick="window.fm.create_directory()" value="{="New Folder"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
 			{check $canupload}
-			<input type="button" id="btn_upload" onclick="window.fm.show_upload()" value="{="Upload"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-default btn-sm" type="button" id="btn_upload" onclick="window.fm.show_upload()" value="{="Upload"}" /> &nbsp;&nbsp;&nbsp;&nbsp;
 			{/check}
 
 			<span id="clipboardstatus" class="statuscontents"></span>
@@ -102,8 +105,8 @@
     {="New name"}: <input type="text" id="rename_newname" name="rename_newname" value="" size="30" />
     </p>
     
-    <input type="button" value="{="OK"}" id="rename_submit" onclick="window.fm.do_rename()" />
-    <input type="button" value="{="Cancel"}" onclick="window.fm.close_dialog()" />
+    <input class="btn btn-default btn-sm" type="button" value="{="OK"}" id="rename_submit" onclick="window.fm.do_rename()" />
+    <input class="btn btn-default btn-sm" type="button" value="{="Cancel"}" onclick="window.fm.close_dialog()" />
 </div>
 
 <div id="mkdir" class="dialogcontent">
@@ -115,8 +118,8 @@
 	{="Folder name"}: <input type="text" id="mkdir_name" name="mkdir_name" value="" size="30" />
 	</p>
 
-	<input type="button" value="{="Create"}" id="mkdir_submit" onclick="window.fm.do_mkdir()" />
-	<input type="button" value="{="Cancel"}" onclick="window.fm.close_dialog()" />
+	<input class="btn btn-default btn-sm" type="button" value="{="Create"}" id="mkdir_submit" onclick="window.fm.do_mkdir()" />
+	<input class="btn btn-default btn-sm" type="button" value="{="Cancel"}" onclick="window.fm.close_dialog()" />
 </div>
 
 </form>

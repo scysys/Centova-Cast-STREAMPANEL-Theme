@@ -1,0 +1,1 @@
+<p>{="We do not support this Method. Please read the following Article"}: <a href="https://www.streampanel.net/faq/centova-cast-passwort-vergessen-aendern/" target="_blank" rel="noopener">https://www.streampanel.net/faq/centova-cast-passwort-vergessen-aendern/</a></p>

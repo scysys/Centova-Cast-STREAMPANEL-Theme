@@ -9,6 +9,9 @@ color: white !important;
 .m-subheader {
 display: none;
 }
+.m-portlet .m-portlet__body {
+background-color: #fbfbfb;
+}
 {/css}
 
 <div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
@@ -26,7 +29,7 @@ display: none;
 	{="%s could not be %s",$subject,$action}{if $reason}: {$reason|htmlentities}{/if}.
 {/check}
 
-	<a href="{$indexself}" class="btn btn-default btn-block">{="Return"}</a>
+	<a href="{$indexself}" class="btn btn-primary btn-block">{="Return"}</a>
     </div>
 </div>
 	
