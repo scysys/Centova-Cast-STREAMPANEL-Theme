@@ -14,6 +14,15 @@ display: none;
 {$warnings}
 {$news}
 
+<div class="col-sm-12">
+<div class="row">
+<div class="col-sm-6"><a class="btn btn-primary btn-block" href="/client/index.php?page=quicklinks">Informationen / Zugangsdaten</a></div>
+<div class="col-sm-6"><a class="btn btn-primary btn-block" href="https://login.streampanel.net/submitticket.php?step=2&deptid=2" target="_blank" rel="noopener">Supportanfrage</a></div>
+</div>
+</div>
+
+<br/>
+
 <div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
     <div class="m-portlet__head sp-box-table">
         <div class="m-portlet__head-caption">

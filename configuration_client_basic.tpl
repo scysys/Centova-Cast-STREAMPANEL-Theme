@@ -179,7 +179,7 @@ $(function(){
 
 <div class="input-group mb-3">
 <div class="input-group-prepend">
-<span class="input-group-text">{="IP address"}</span>
+<span class="input-group-text">{="Port"}</span>
 </div>
 {if ($creating) || ($template_editor)}({="auto"}){else}{$config.port|htmlentities}{/if}
 </div>

@@ -20,26 +20,6 @@ display: none;
     <div class="m-portlet__head sp-box-table">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text sp-box-table"> {="Good to know"} </h3>
-            </div>
-        </div>
-    </div>
-    <div class="m-portlet__body">
-        <ul>
-            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}
-            </li>
-            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}
-            </li>
-            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
-    <div class="m-portlet__head sp-box-table">
-        <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
                 <h3 class="m-portlet__head-text sp-box-table"> {="Create DJ account"} </h3>
             </div>
         </div>
@@ -107,6 +87,39 @@ display: none;
                 {/loop}
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
+    <div class="m-portlet__head sp-box-table">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text sp-box-table"> {="Good to know"} </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <ul>
+            <li>{="Outside the STREAMPANEL Cloud you need to stop & restart your Stream Server to make changes to your DJ-Accounts active."}
+            </li>
+            <li>{="When entering the connection data in your broadcaster, pay attention to upper and lower case letters in the DJ username or DJ password."}
+            </li>
+            <li>{="If you need more details about your connection, look %shere%s.","<a href='index.php?page=quicklinks'>","</a>"}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="m-portlet m-portlet--mobile m-portlet--rounded m-portlet--head-solid-bg">
+    <div class="m-portlet__head sp-box-table">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text sp-box-table"> {="Icecast V2 / icescc"} </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <p>{="Icecast V2 with icescc as AutoDJ Source, can not be used with the DJ-Accounts! Our Cloud Version Icecast V2 / Liquidsoap and any other our Stream Servers are supporting the DJ Protocol."}</p>
     </div>
 </div>
 
